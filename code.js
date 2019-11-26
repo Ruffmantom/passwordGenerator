@@ -2,24 +2,74 @@ console.log('working');
 
 
 // Checking for character range is set and between 8-25 charaters resource for adding input resource w3 schools
-
+var result = document.getElementById('generateBox')
 
 function generatePass() {
-    var charRange = document.getElementById("myNumber").value;
-    if (charRange <= 25 && charRange >= 8) {
+    let userNum = document.getElementById("myNumber").value;
+    if (userNum <= 25 && userNum >= 8) {
         console.log('great!');
     } else {
-        alert('Please choose a number between 8-25 or leave at 8');
-        // trying to reset value inside of enter number area
-        // document.getElementById('myNumber').innerHTML(8);
+        alert('Please choose a number between 8-25');
+    };
+    // Rusults box
+    const length = userNum;
+    console.log(length);
+
+    // adding the results for the password
+    result.innerHTML = generatedPassword(length);
+
+};
+
+
+// final GENERATION function 
+function generatedPassword(length) {
+
+    var typesArr = [true, true, true, true];
+    let password = '';
+    var typeCount = typesArr;
+
+    for (i = 0; i <= length; i++) {
+        typesArr.forEach(type => {
+            const funcName = Object.keys(type)[0];
+            password += funcHolder[funcName]();
+
+        })
+
     }
+
+}
+
+// setting types to all true since user cannot uncheck a char type
+var typesArr = [true, true, true, true];
+
+// Added a object to hold all the functions
+var funcHolder = {
+    lower: getLowerCase,
+    upper: getUpperCase,
+    special: getSpecialCase,
+    numbers: getNum
+}
+
+// got functions to get random numbers and letters help from youtube resource "Traversy Media"
+function getLowerCase() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+
+}
+
+function getUpperCase() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+
+function getSpecialCase() {
+    return String.fromCharCode(Math.floor(Math.random() * 15) + 33);
+}
+
+function getNum() {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
 
 
-
-
-
-// Function for copy to clipboard resource w3 schools
+// Function for COPY to clipboard resource w3 schools
 function copyToClipboard() {
     var copyText = document.getElementById("generateBox");
     copyText.select();
@@ -32,43 +82,6 @@ function copyToClipboard() {
 
 
 
-
-//  need to get functions for finding char sets
-// Easy way but more code probably and work..  
-var charCodes = {
-    upperCase: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-    lowerCase: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'c', 'w', 'x', 'y', 'z'],
-    numCase: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-    specialCase: ['!', '@', '#', '$', '%', '^', '&', '*']
-};
-
-function getRandom() {
-
-    console.log(charCodes.upperCase + charCodes.lowerCase + charCodes.numCase + charCodes.specialCase);
-
-}
-
-getRandom();
-
-
-// harder way
-// function getUpperCase() {
-//     var upperCase = String.fromCharCode(Math.floor(Math.random()));
-//     console.log(upperCase);
-
-// }
-
-// getUpperCase();
-
-// function getLowerCase() {
-
-// }
-// function getSpecialCase() {
-
-// }
-// function getNum() {
-
-// }
 
 
 
