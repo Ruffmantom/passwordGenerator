@@ -7,3 +7,4 @@ I didn't even think to take pictures of my before and afters but here is a pictu
 
 ![Image of Iphone size](./assets/images/mobile.PNG) 
 
+![video of working](./assets/images/showcase.mov) 
